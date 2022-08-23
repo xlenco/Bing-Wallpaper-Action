@@ -1,11 +1,22 @@
 {
-    "rewrites": [
-      {
-        "source": "/",
-        "destination": "/api/"
+  "builds": [
+    {
+      "src": "pip install --no-cache-dir -r requirements.txt",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "."
       }
-    ],
-    "github": {
-      "silent": true
+    },
+    {
+      "src": "main.py",
+      "use": "@vercel/python"
     }
-  }
+  ],
+  "rewrites": [
+    {
+      "source": "(.*)",
+      "destination": "mian.py"
+    }
+  ],
+  "trailingSlash": true
+}
